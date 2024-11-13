@@ -6,19 +6,7 @@ Run:
 ```
 *This script uses symlink, updating this repo will be enough for future evolutions*
 
-Add a .gitconfig.user in your home and fill it with credentials info.
-
-Example with vscode:
-```shell
-code ~/.gitconfig.user
-```
-Fill it like this:
-```properties
-[user]
-    name = johndoe
-    email = john@doe.com
-```
-
+It will prompt you to enter a name and email to add it to a `.gitconfig.user` that will contain user specific config
 
 ### Manual global gitignore setup (without using script)
 
