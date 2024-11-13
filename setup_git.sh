@@ -12,6 +12,13 @@ else
     echo Step skipped.
 fi
 
+if ln .git_commit_msg.txt ~/; then
+    echo '~/.git_commit_msg.txt' linked.
+else
+    echo Countn\'t create link '~/.git_commit_msg.txt'.
+    echo Step skipped.
+fi
+
 if [ -f ~/.gitconfig.user ]; then
     echo '~/.gitconfig.user' already exists.
     echo Step skipped.
