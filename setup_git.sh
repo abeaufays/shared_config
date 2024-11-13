@@ -1,10 +1,14 @@
+if ln .gitconfig ~/; then
+    echo .gitconfig linked.
+else
+    echo Couldn\'t link .gitconfig, setup aborted.
+    exit
+fi
+
 if ln .gitignore.global ~/; then
     echo .gitignore.global linked.
 fi
 
-if ln .gitconfig ~/; then
-    echo .gitconfig linked.
-fi
 
 echo Setup the .gitconfig.user '(press Enter to skip)'
 echo Enter your name:
