@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[core]
+	excludesFile = ~/.gitignore_global
+    editor = code --wait 
+[include]
+    path = ~/.gitconfig.user
