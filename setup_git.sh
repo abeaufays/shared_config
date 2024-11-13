@@ -1,12 +1,15 @@
 if ln .gitconfig ~/; then
-    echo .gitconfig linked.
+    echo '~/.gitconfig' linked.
 else
-    echo Couldn\'t link .gitconfig, setup aborted.
+    echo Couldn\'t create link '~/.gitconfig', setup aborted.
     exit
 fi
 
 if ln .gitignore.global ~/; then
-    echo .gitignore.global linked.
+    echo '~/.gitignore.global' linked.
+else
+    echo Countn\'t create link '~/.gitignore.global'.
+    echo Step skipped.
 fi
 
 
