@@ -1,2 +1,2 @@
-ln .gitignore_global ~/
+ln .gitignore.global ~/
 ln .gitconfig ~/
