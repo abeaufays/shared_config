@@ -22,4 +22,4 @@ Setup the file as a global gitignore
 ```shell
 git config --global core.excludesFile '~/.gitignore.global'
 ```
-*A lot of files currenlty in this folder are already ignored by default*
+*A lot of files currenlty in this gitignore file are already ignored by default*
