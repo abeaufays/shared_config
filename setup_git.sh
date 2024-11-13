@@ -1,6 +1,12 @@
-ln .gitignore.global ~/
-ln .gitconfig ~/
+if ln .gitignore.global ~/; then
+    echo .gitignore.global linked.
+fi
 
+if ln .gitconfig ~/; then
+    echo .gitconfig linked.
+fi
+
+echo Setup the .gitconfig.user
 echo Enter your name:
 read name
 echo Enter your email adress:
