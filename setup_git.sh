@@ -6,12 +6,14 @@ if ln .gitconfig ~/; then
     echo .gitconfig linked.
 fi
 
-echo Setup the .gitconfig.user
+echo Setup the .gitconfig.user '(press Enter to skip)'
 echo Enter your name:
 read name
-echo Enter your email adress:
-read email
+if [ -n "${name}" ]; then    
+    echo Enter your email adress:
+    read email
 
-echo "[user]" > ~/.gitconfig.user
-echo -e '\t'name = $name >> ~/.gitconfig.user
-echo -e '\t'email = $email >> ~/.gitconfig.user
+    echo "[user]" > ~/.gitconfig.user
+    echo -e '\t'name = $name >> ~/.gitconfig.user
+    echo -e '\t'email = $email >> ~/.gitconfig.user
+fi
