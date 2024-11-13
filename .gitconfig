@@ -3,6 +3,11 @@
 [core]
 	excludesFile = ~/.gitignore.global
     editor = code --wait 
+[rebase]
+    autosquash = true
+    autostash = true
+[fetch]
+    prune = true
 [alias]
     rbi = rebase -i
     ame = commit --amend
