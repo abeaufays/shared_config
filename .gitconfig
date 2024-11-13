@@ -3,5 +3,12 @@
 [core]
 	excludesFile = ~/.gitignore.global
     editor = code --wait 
+[alias]
+    rbi = rebase -i
+    ame = commit --amend
+    amne = commit --amend --no-edit
+    fix = commit --fixup
+    pf = push --force-with-lease
+    fp = pf
 [include]
     path = ~/.gitconfig.user
