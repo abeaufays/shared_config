@@ -8,8 +8,6 @@
     autostash = true
 [fetch]
     prune = true
-[commit]
-    template = ~/.git_commit_msg.txt
 [alias]
     rbi = rebase -i
     ame = commit --amend
