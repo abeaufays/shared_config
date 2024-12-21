@@ -8,6 +8,14 @@ Run:
 
 It will prompt you to enter a name and email to add it to a `.gitconfig.user` that will contain user specific config
 
+### Add commit message template to one project
+
+Inside target repository: 
+```shell
+git config --local commit.template ~/.git_commit_msg.txt
+```
+*Can be included and modified by project*
+
 ### Manual global gitignore setup (without using script)
 
 Symlink this .gitignore in your home
