@@ -20,7 +20,10 @@
 [push]
 	autoSetupRemote = true
 [alias]
-    main-branch = "!git symbolic-refs refs/remotes/origin/HEAD | cut -d'/' -f4"
+    # Used for other aliases
+    main-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4"
+    get-reference-commit = "!sh -c 'if [ $(git branch --show-current) = $(git main-branch) ]; then echo @~10 ; else echo $(git merge-base @ $(git main-branch)); fi'"
+    
     rbi = rebase -i
     ame = commit --amend
     amne = commit --amend --no-edit
@@ -29,8 +32,8 @@
 	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
     sw = switch
 
-    # Fixup on with a GUI selector (requires fzf + not on main branch)
-	fix = "!git log `git merge-base @ $(git main-branch)`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit --fixup"
+    # Fixup on with a GUI selector (requires fzf)
+	fix = "!git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit --fixup"
     # Alternative without fzf: add reference to commit 
     # fix = commit --fixup
 
@@ -41,8 +44,8 @@
 
 	# Update main then rebase on it
     rbm = "!git fetch origin $(git main-branch):$(git main-branch); git rebase $(git main-branch)"
-    # Rebase interactive on all that is new to current branch (requires not being on main branch)
-	rba = "!git rebase -i --autosquash `git merge-base @ $(git main-branch)`"
+    # Rebase interactive on all that is new to current branch
+	rba = "!git rebase -i --autosquash `git get-reference-commit`"
     # Update main then create new branch from it
 	nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
     spu = stash push -u
