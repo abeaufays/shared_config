@@ -24,16 +24,24 @@
     rbi = rebase -i
     ame = commit --amend
     amne = commit --amend --no-edit
-    fix = commit --fixup
     pf = push --force-with-lease
     fp = pf
 	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
     sw = switch
-    # Switch on a branch with partial name
-	swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
+
+    # Fixup on with a GUI selector (requires fzf + not on main branch)
+	fix = "!git log `git merge-base @ $(git main-branch)`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit --fixup"
+    # Alternative without fzf: add reference to commit 
+    # fix = commit --fixup
+
+	# Switch with a GUI selector (requires fzf)
+    swf = "!git branch | fzf | xargs git switch"
+    # Alternative without fzf: Switch on a branch with partial name
+    # swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
+
 	# Update main then rebase on it
     rbm = "!git fetch origin $(git main-branch):$(git main-branch); git rebase $(git main-branch)"
-    # Rebase interactive on all that is new to current branch
+    # Rebase interactive on all that is new to current branch (requires not being on main branch)
 	rba = "!git rebase -i --autosquash `git merge-base @ $(git main-branch)`"
     # Update main then create new branch from it
 	nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
