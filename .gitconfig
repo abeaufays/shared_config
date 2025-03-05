@@ -3,11 +3,22 @@
 [core]
 	excludesFile = ~/.gitignore.global
     editor = code --wait 
+[branch]
+	sort = -committerdate
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [rebase]
     autosquash = true
     autostash = true
+	updateRefs = true
 [fetch]
-    prune = true
+	prune = true
+	pruneTags = true
+[push]
+	autoSetupRemote = true
 [alias]
     main-branch = "!git symbolic-refs refs/remotes/origin/HEAD | cut -d'/' -f4"
     rbi = rebase -i
