@@ -9,11 +9,24 @@
 [fetch]
     prune = true
 [alias]
+    main-branch = "!git symbolic-refs refs/remotes/origin/HEAD | cut -d'/' -f4"
     rbi = rebase -i
     ame = commit --amend
     amne = commit --amend --no-edit
     fix = commit --fixup
     pf = push --force-with-lease
     fp = pf
+	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
+    sw = switch
+    # Switch on a branch with partial name
+	swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
+	# Update main then rebase on it
+    rbm = "!git fetch origin $(git main-branch):$(git main-branch); git rebase $(git main-branch)"
+    # Rebase interactive on all that is new to current branch
+	rba = "!git rebase -i --autosquash `git merge-base @ $(git main-branch)`"
+    # Update main then create new branch from it
+	nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
+    spu = stash push -u
+	spo = stash pop
 [include]
     path = ~/.gitconfig.user
