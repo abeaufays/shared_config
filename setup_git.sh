@@ -1,22 +1,26 @@
-if ln .gitconfig ~/; then
+if [ -f ~/.gitconfig ]; then 
+    echo '~/.gitconfig' already exists.
+    echo Step skipped.
+else
+    ln .gitconfig ~/
     echo '~/.gitconfig' linked.
-else
-    echo Couldn\'t create link '~/.gitconfig', setup aborted.
-    exit
 fi
 
-if ln .gitignore.global ~/; then
+if [ -f ~/.gitignore.global ]; then
+    echo '~/.gitignore.global' already exists.
+    echo Step skipped.
+else
+    ln .gitignore.global ~/
     echo '~/.gitignore.global' linked.
-else
-    echo Countn\'t create link '~/.gitignore.global'.
-    echo Step skipped.
 fi
 
-if ln .git_commit_msg.txt ~/; then
-    echo '~/.git_commit_msg.txt' linked.
-else
-    echo Countn\'t create link '~/.git_commit_msg.txt'.
+if [ -f ~/.git_commit_msg.txt ]; then
+    echo '~/.git_commit_msg.txt' already exists.
     echo Step skipped.
+else
+    ln .git_commit_msg.txt ~/
+    echo '~/.git_commit_msg.txt' linked.
+
 fi
 
 if [ -f ~/.gitconfig.user ]; then
