@@ -1,24 +1,24 @@
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [core]
-	excludesFile = ~/.gitignore.global
+    excludesFile = ~/.gitignore.global
     editor = code --wait 
 [branch]
-	sort = -committerdate
+    sort = -committerdate
 [diff]
-	algorithm = histogram
-	colorMoved = plain
-	mnemonicPrefix = true
-	renames = true
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [rebase]
     autosquash = true
     autostash = true
-	updateRefs = true
+    updateRefs = true
 [fetch]
-	prune = true
-	pruneTags = true
+    prune = true
+    pruneTags = true
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [alias]
     # Used for other aliases
     main-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4"
@@ -29,26 +29,26 @@
     amne = commit --amend --no-edit
     pf = push --force-with-lease
     fp = pf
-	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
+    wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
     sw = switch
 
     # Fixup on with a GUI selector (requires fzf)
-	fix = "!git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit --fixup"
+    fix = "!git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit --fixup"
     # Alternative without fzf: add reference to commit 
     # fix = commit --fixup
 
-	# Switch with a GUI selector (requires fzf)
+    # Switch with a GUI selector (requires fzf)
     swf = "!git branch | fzf | xargs git switch"
     # Alternative without fzf: Switch on a branch with partial name
     # swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
 
-	# Update main then rebase on it
+    # Update main then rebase on it
     rbm = "!git fetch origin $(git main-branch):$(git main-branch); git rebase $(git main-branch)"
     # Rebase interactive on all that is new to current branch
-	rba = "!git rebase -i --autosquash `git get-reference-commit`"
+    rba = "!git rebase -i --autosquash `git get-reference-commit`"
     # Update main then create new branch from it
-	nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
+    nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
     spu = stash push -u
-	spo = stash pop
+    spo = stash pop
 [include]
     path = ~/.gitconfig.user
