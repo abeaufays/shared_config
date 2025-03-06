@@ -50,5 +50,8 @@
     nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
     spu = stash push -u
     spo = stash pop
+
+    lg = log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
+    ll = "!git lg `git get-reference-commit`..@"
 [include]
     path = ~/.gitconfig.user
