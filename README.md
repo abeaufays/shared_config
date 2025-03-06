@@ -17,7 +17,9 @@ It will prompt you to enter a name and email to add it to a `.gitconfig.user` th
 Inside target repository:
 
 ```shell
-git config --local commit.template ~/.git_commit_msg.txt
+git enable-commit-message-template
+# Then to disable it 
+git disable-commit-message-template
 ```
 
 _Can be included and modified by project_
