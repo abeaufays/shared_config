@@ -33,8 +33,8 @@
     sw = switch
 
     # Fixup on with a GUI selector (requires fzf)
-    fix = "!git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit --fixup"
-    # Alternative without fzf: add reference to commit 
+    fix = "!f() { git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit $1 --fixup ; }; f"
+    # Alternative without fzf: add reference to commit
     # fix = commit --fixup
 
     # Switch with a GUI selector (requires fzf)
@@ -53,7 +53,7 @@
 
     lg = log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
     ll = "!git lg `git get-reference-commit`..@"
-
+    
     enable-commit-message-template = config --local commit.template ~/.git_commit_msg.txt
     disable-commit-message-template = config --local --unset commit.template
 [include]
