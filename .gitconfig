@@ -2,7 +2,8 @@
     defaultBranch = main
 [core]
     excludesFile = ~/.gitignore.global
-    editor = code --wait 
+    editor = code --wait
+    pager = cat
 [branch]
     sort = -committerdate
 [diff]
@@ -53,8 +54,8 @@
     spu = stash push -u
     spo = stash pop
 
-    lg = log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
-    ll = "!git lg `git get-reference-commit`..@"
+    lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
+    ll = "!git lg $(git get-reference-commit)..@"
     
     enable-commit-message-template = config --local commit.template ~/.git_commit_msg.txt
     disable-commit-message-template = config --local --unset commit.template
