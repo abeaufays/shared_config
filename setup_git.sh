@@ -1,9 +1,8 @@
-if [ -f ~/.gitconfig ]; then 
-    echo '~/.gitconfig' already exists.
-    echo Step skipped.
+if [ $(git config --get-all include.path | grep $(pwd)/.gitconfig) ]; then
+    echo Link to this .gitconfig already exists
 else
-    ln .gitconfig ~/
-    echo '~/.gitconfig' linked.
+    git config --global --add include.path $(pwd)/.gitconfig
+    echo This .gitconfig has been linked to global
 fi
 
 if [ -f ~/.gitignore.global ]; then

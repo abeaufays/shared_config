@@ -59,5 +59,3 @@
     
     enable-commit-message-template = config --local commit.template ~/.git_commit_msg.txt
     disable-commit-message-template = config --local --unset commit.template
-[include]
-    path = ~/.gitconfig.user
