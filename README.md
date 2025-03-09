@@ -10,8 +10,6 @@ Run:
 
 _This script uses symlink, updating this repo will be enough for future evolutions_
 
-It will prompt you to enter a name and email to add it to a `.gitconfig.user` that will contain user specific config
-
 ### Add commit message template to one project
 
 Inside target repository:

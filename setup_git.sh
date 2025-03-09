@@ -21,20 +21,3 @@ else
     echo '~/.git_commit_msg.txt' linked.
 
 fi
-
-if [ -f ~/.gitconfig.user ]; then
-    echo '~/.gitconfig.user' already exists.
-    echo Step skipped.
-else
-    echo Setup the .gitconfig.user '(press Enter to skip)'
-    echo Enter your name:
-    read name
-    if [ -n "${name}" ]; then    
-        echo Enter your email adress:
-        read email
-
-        echo "[user]" > ~/.gitconfig.user
-        echo -e '\t'name = $name >> ~/.gitconfig.user
-        echo -e '\t'email = $email >> ~/.gitconfig.user
-    fi
-fi
