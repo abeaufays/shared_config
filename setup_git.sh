@@ -5,12 +5,11 @@ else
     echo This .gitconfig has been linked to global
 fi
 
-if [ -f ~/.gitignore.global ]; then
-    echo '~/.gitignore.global' already exists.
-    echo Step skipped.
+if [ $(git config --get-all core.excludesFile | grep $(pwd)/.gitignore.global) ]; then
+    echo Link to this .gitignore already exists
 else
-    ln .gitignore.global ~/
-    echo '~/.gitignore.global' linked.
+    git config --global --add core.excludesFile $(pwd)/.gitignore.global
+    echo This .gitignore has been linked to global
 fi
 
 if [ -f ~/.git_commit_msg.txt ]; then
