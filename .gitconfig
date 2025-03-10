@@ -31,7 +31,6 @@
     ame = commit --amend
     amne = commit --amend --no-edit
     pf = push --force-with-lease
-    fp = pf
     wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
     sw = switch
 
