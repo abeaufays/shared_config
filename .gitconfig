@@ -53,6 +53,8 @@
     spu = stash push -u
     spo = stash pop
 
+    pop = reset @~
+
     lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
     ll = "!git lg $(git get-reference-commit)..@"
     
