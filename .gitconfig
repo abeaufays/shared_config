@@ -27,33 +27,34 @@
     main-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4"
     get-reference-commit = "!sh -c 'if [ $(git branch --show-current) = $(git main-branch) ]; then echo @~10 ; else echo $(git merge-base @ $(git main-branch)); fi'"
     
-    rbi = rebase -i
     ame = commit --amend
     amne = commit --amend --no-edit
-    pf = push --force-with-lease
     wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
-    sw = switch
-
     # Fixup on with a GUI selector (requires fzf)
     fix = "!f() { git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit $1 --fixup ; }; f"
     # Alternative without fzf: add reference to commit
     # fix = commit --fixup
+    pop = reset @~
 
+    sw = switch
     # Switch with a GUI selector (requires fzf)
     swf = "!git branch | fzf | xargs git switch"
     # Alternative without fzf: Switch on a branch with partial name
     # swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
 
+    pf = push --force-with-lease
+
+    rbi = rebase -i
     # Update main then rebase on it
     rbm = "!git fetch origin $(git main-branch):$(git main-branch); git rebase $(git main-branch)"
     # Rebase interactive on all that is new to current branch
     rba = "!git rebase -i --autosquash `git get-reference-commit`"
     # Update main then create new branch from it
+
     nbr = "!f() { git fetch origin $(git main-branch):$(git main-branch); git switch -c $1 $(git main-branch); }; f"
+
     spu = stash push -u
     spo = stash pop
-
-    pop = reset @~
 
     lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
     ll = "!git lg $(git get-reference-commit)..@"
