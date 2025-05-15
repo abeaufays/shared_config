@@ -28,7 +28,7 @@
     get-reference-commit = "!sh -c 'if [ $(git branch --show-current) = $(git main-branch) ]; then echo @~10 ; else echo $(git merge-base @ $(git main-branch)); fi'"
     
     st = status
-    adf = "!git ls-files -m | fzf -m | xargs git add"
+    adf = "!git ls-files -mo --exclude-standard | fzf -m | xargs git add"
 
     ame = commit --amend
     amne = commit --amend --no-edit
