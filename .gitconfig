@@ -29,6 +29,8 @@
     
     st = status
     adf = "!git ls-files -mo --exclude-standard | fzf -m | xargs git add"
+    omf = "!git diff --name-only @ $(git get-reference-commit) | fzf -m | xargs code"
+
 
     ame = commit --amend
     amne = commit --amend --no-edit
