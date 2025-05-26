@@ -32,6 +32,7 @@
     omf = "!git diff --name-only @ $(git get-reference-commit) | fzf -m | xargs code"
 
 
+    co = commit
     ame = commit --amend
     amne = commit --amend --no-edit
     wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
