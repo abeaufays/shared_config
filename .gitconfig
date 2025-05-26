@@ -28,7 +28,9 @@
     get-reference-commit = "!sh -c 'if [ $(git branch --show-current) = $(git get-main-branch) ]; then echo @~10 ; else echo $(git merge-base @ $(git get-main-branch)); fi'"
     
     st = status
+    # Add Modified Files: Display modified files since last commit, select some to add to the staging area 
     amf = "!git ls-files -mo --exclude-standard | fzf -m | xargs git add"
+    # Open Modified Files: Display commited files since diverting from main branch, select some and open them in vscode 
     omf = "!git diff --name-only @ $(git get-reference-commit) | fzf -m | xargs code"
 
 
@@ -36,6 +38,7 @@
     ame = commit --amend
     amne = commit --amend --no-edit
     wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
+    
     # Fixup on with a GUI selector (requires fzf)
     fix = "!f() { git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit $1 --fixup ; }; f"
     # Alternative without fzf: add reference to commit
@@ -50,13 +53,14 @@
 
     pf = push --force-with-lease
 
+    # ReBase Interactive
     rbi = rebase -i
-    # Update main then rebase on it
+    # ReBase Main: Update main then rebase on it
     rbm = "!git fetch origin $(git get-main-branch):$(git get-main-branch); git rebase $(git get-main-branch)"
-    # Rebase interactive on all that is new to current branch
+    # ReBase All: Rebase interactive on all that is new to current branch
     rba = "!git rebase -i --autosquash `git get-reference-commit`"
-    # Update main then create new branch from it
 
+    # New BRanch: Update main then create new branch from it
     nbr = "!f() { git fetch origin $(git get-main-branch):$(git get-main-branch); git switch -c $1 $(git get-main-branch); }; f"
 
     spu = stash push -u
