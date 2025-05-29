@@ -59,6 +59,9 @@
     rbm = "!git fetch origin $(git get-main-branch):$(git get-main-branch); git rebase $(git get-main-branch)"
     # ReBase All: Rebase interactive on all that is new to current branch
     rba = "!git rebase -i --autosquash `git get-reference-commit`"
+    # ReBase Continue
+    rbc = rebase --continue
+
 
     # New BRanch: Update main then create new branch from it
     nbr = "!f() { git fetch origin $(git get-main-branch):$(git get-main-branch); git switch -c $1 $(git get-main-branch); }; f"
