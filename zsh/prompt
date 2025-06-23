@@ -9,7 +9,7 @@ virtualenv_info() {
   [[ -n "$VIRTUAL_ENV" ]] && echo "%F{cyan}($(basename $VIRTUAL_ENV))%f "
 }
 
-VIRTUAL_ENV_DISABLE_PROMPT=1
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 zstyle ':vcs_info:*:*:*' formats '%F{8}[%r]%f%S %F{30}(%b)%f'
 zstyle ':vcs_info:*' nvcsformats '%~'
 
