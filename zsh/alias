@@ -1,3 +1,11 @@
 alias ll="ls -al --color=auto"
-alias mkpydir='function _mkpydir(){mkdir -p "$1" && touch "$1/__init__.py" && cd "$1"; }; _mkpydir' 
 alias activate='source .venv/bin/activate'
+
+mkpydir() {
+    mkdir -p "$1"
+    current=""
+    for part in ${(s:/:)1}; do
+        current="${current:+$current/}$part"
+        touch "$current"/__init__.py
+    done
+}
