@@ -1,6 +1,6 @@
 alias ll="ls -al --color=auto"
 alias activate='source .venv/bin/activate'
-alias cdgit="cd $(git rev-parse --show-toplevel)"
+alias cdgit='cd $(git rev-parse --show-toplevel)'
 
 
 mkpydir() {
