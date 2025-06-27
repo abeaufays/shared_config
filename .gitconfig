@@ -49,6 +49,7 @@
     afix = "!git rebase --autosquash `git get-reference-commit`"
 
     pop = reset @~
+    reset-on = "!f() { git log `git get-reference-commit`^..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git reset $1 ; }; f"
 
     sw = switch
     # Switch with a GUI selector (requires fzf)
