@@ -45,6 +45,9 @@
     fix = "!f() { git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit $1 --fixup ; }; f"
     # Alternative without fzf: add reference to commit
     # fix = commit --fixup
+    # Apply Fixups
+    afix = "!git rebase --autosquash `git get-reference-commit`"
+
     pop = reset @~
 
     sw = switch
