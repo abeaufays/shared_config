@@ -26,7 +26,7 @@
     autoupdate = true
 [alias]
     # Used for other aliases
-    get-main-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4"
+    get-main-branch = "!git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | cut -d'/' -f4 | grep -v '^$' || git branch -l main master 2>/dev/null | head -1 | sed 's/^[* ]*//' || echo main"
     get-reference-commit = "!sh -c 'if [ $(git branch --show-current) = $(git get-main-branch) ]; then echo @~10 ; else echo $(git merge-base @ $(git get-main-branch)); fi'"
     
     st = status
