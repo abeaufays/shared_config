@@ -3,7 +3,6 @@
 [core]
     excludesFile = ~/.gitignore.global
     editor = code --wait
-    pager = cat
 [branch]
     sort = -committerdate
 [diff]
@@ -21,7 +20,10 @@
 [push]
     autoSetupRemote = true
 [pull]
-    rebase = true  
+    rebase = true
+[rerere]
+    enabled = true
+    autoupdate = true
 [alias]
     # Used for other aliases
     get-main-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4"
