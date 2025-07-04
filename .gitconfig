@@ -68,9 +68,10 @@
     # ReBase Continue
     rbc = rebase --continue
 
-
     # New BRanch: Update main then create new branch from it
     nbr = "!f() { git fetch origin $(git get-main-branch):$(git get-main-branch); git switch -c $1 $(git get-main-branch); }; f"
+    # Fetch BRanch: create locally a branch that already exists on remote
+    fbr = "!f(){ git fetch origin $1; git switch $1; }; f" 
 
     spu = stash push -u
     spo = stash pop --index
