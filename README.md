@@ -1,4 +1,6 @@
-For alias list see [.gitconfig](./.gitconfig)
+For alias list see [.gitconfig](./.gitconfig)  
+For an explanation on how I use these alias see [docs/git-workflow.md](docs/git-workflow.md)
+
 
 ### Simple install
 
