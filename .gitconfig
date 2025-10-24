@@ -59,7 +59,8 @@
 
     pop = reset @~
     reset-on = "!f() { git log `git get-reference-commit`^..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git reset $1 ; }; f"
-
+    delete-branches = "!f() { git branch | fzf -m | xargs git branch -D ;}; f"
+    
     sw = switch
     # Show branches in fzf and select one to switch on
     swf = "!git branch | fzf --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git-log-for-fzf-preview $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed 's/^[*+ ]*//' | xargs git switch"
