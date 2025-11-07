@@ -54,7 +54,7 @@
 
     sw = switch
     # Switch with a GUI selector (requires fzf)
-    swf = "!git branch | fzf | xargs git switch"
+    swf = "!git branch | sed 's/^[*+ ]*//' | fzf --preview='git log-for-fzf $(git merge-base {} $(git get-main-branch))..{} 2>/dev/null || echo \"No commits\"' | xargs git switch"
     # Alternative without fzf: Switch on a branch with partial name
     # swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
 
@@ -79,6 +79,7 @@
 
     lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative --reverse
     ll = "!git lg $(git get-reference-commit)..@"
-    
+    log-for-fzf = log --pretty=format:'%s' --abbrev-commit --date=relative --reverse
+
     enable-commit-message-template = config --local commit.template ~/.git_commit_msg.txt
     disable-commit-message-template = config --local --unset commit.template
