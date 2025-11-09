@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh 
+
 alias ll="ls -al --color=auto"
 alias activate='source .venv/bin/activate'
 alias cdg='cd $(git rev-parse --show-toplevel)'
