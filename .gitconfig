@@ -34,6 +34,9 @@
     update-main = "!git fetch origin $(git get-main-branch):$(git get-main-branch)"
     # List commits with only the name to display in fzf preview
     log-for-fzf = log --pretty=format:'%s' --abbrev-commit --date=relative --reverse
+    # Check if input branch is merged, inefficient command in terms of time 
+    is-merged = "!f() { commit=${1:-HEAD}; main=$(git get-main-branch); if git merge-base --is-ancestor $commit $main 2>/dev/null; then echo 'Merged'; elif git log $main --format=%H | grep -q $(git rev-parse $commit 2>/dev/null); then echo 'Merged (rebased)'; else echo 'Not merged'; fi; }; f"
+
 
     st = status
     # Add Modified Files: Display modified files since last commit, select some to add to the staging area 
