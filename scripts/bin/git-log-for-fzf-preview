@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+if [[ -z "$1" ]]; then
+    echo "Error: Missing required argument" >&2
+    exit 1
+fi
+
+git log --pretty=oneline $1 | while IFS= read -r line; do
+    hash="${line%% *}"
+    message="${line#* }"
+    echo -e  "\033[1m$message\033[0m"
+    git diff-tree --no-commit-id --name-only -r $hash | head -n 3 | while IFS= read -r filename; do 
+        echo " - $filename" 
+    done
+    if [[ $(git diff-tree --no-commit-id --name-only -r $hash | wc -l) -gt 3 ]]; then
+        echo " - ..."
+    fi
+done

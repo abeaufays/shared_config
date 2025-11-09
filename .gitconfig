@@ -33,7 +33,6 @@
     # Update the main-branch on origin 
     update-main = "!git fetch origin $(git get-main-branch):$(git get-main-branch)"
     # List commits with only the name to display in fzf preview
-    log-for-fzf = log --pretty=format:'%s' --abbrev-commit --date=relative --reverse
     # Check if input branch is merged, inefficient command in terms of time 
     is-merged = "!f() { commit=${1:-HEAD}; main=$(git get-main-branch); if git merge-base --is-ancestor $commit $main 2>/dev/null; then echo 'Merged'; elif git log $main --format=%H | grep -q $(git rev-parse $commit 2>/dev/null); then echo 'Merged (rebased)'; else echo 'Not merged'; fi; }; f"
 
@@ -63,7 +62,7 @@
 
     sw = switch
     # Show branches in fzf and select one to switch on
-    swf = "!git branch | fzf --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git log-for-fzf $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed 's/^[*+ ]*//' | xargs git switch"
+    swf = "!git branch | fzf --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git-log-for-fzf-preview $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed 's/^[*+ ]*//' | xargs git switch"
 
 
     pf = push --force-with-lease
@@ -81,7 +80,7 @@
     reset-on-remote = "!git fetch origin $(git branch --show-current); git reset --hard origin/$(git branch --show-current)"
 
     # Show all branch in fzf, delete selected ones. Use with -D to force deletion.
-    delete-branches = "!git branch | fzf -m --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git is-merged $branch; echo --- ;git log-for-fzf $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed \"s/^[*+ ]*//\"  | xargs git branch -d "
+    delete-branches = "!git branch | fzf -m --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git is-merged $branch; echo --- ; git-log-for-fzf-preview $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed \"s/^[*+ ]*//\"  | xargs git branch -d "
 
     # New BRanch: Update main then create new branch from it
     nbr = "!f() { git update-main; git switch -c $1 $(git get-main-branch); }; f"
