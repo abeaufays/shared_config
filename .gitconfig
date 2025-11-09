@@ -48,7 +48,7 @@
     wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
     
     # Fixup on with a GUI selector (requires fzf)
-    fix = "!f() { git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf | cut -c -7 | xargs git commit $1 --fixup ; }; f"
+    fix = "!f() { git log `git get-reference-commit`..@ --pretty=format:'%h %s' | fzf --preview='echo {} | sed \"s/ .*$//\" | xargs git show --color ' | cut -c -7 | xargs git commit $1 --fixup ; }; f"
     # Alternative without fzf: add reference to commit
     # fix = commit --fixup
     # Apply Fixups
