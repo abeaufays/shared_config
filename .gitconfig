@@ -77,6 +77,8 @@
     rba = "!git rebase -i --autosquash `git get-reference-commit`"
     # ReBase Continue
     rbc = rebase --continue
+    # Show all branch in fzf, delete selected ones. Use with -D to force deletion.
+    delete-branches = "!git branch | fzf -m --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git is-merged $branch; echo --- ;git log-for-fzf $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed \"s/^[*+ ]*//\"  | xargs git branch -d "
 
     # New BRanch: Update main then create new branch from it
     nbr = "!f() { git update-main; git switch -c $1 $(git get-main-branch); }; f"
