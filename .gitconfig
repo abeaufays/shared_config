@@ -58,8 +58,7 @@
     sw = switch
     # Show branches in fzf and select one to switch on
     swf = "!git branch | fzf --preview='branch=$(echo {} | sed \"s/^[*+ ]*//\" | xargs echo); git log-for-fzf $(git merge-base $branch $(git get-main-branch))..$branch 2>/dev/null || echo \"No commits\"' | sed 's/^[*+ ]*//' | xargs git switch"
-    # Alternative without fzf: Switch on a branch with partial name
-    # swf = "!f() { git branch | grep $1 | xargs git switch; }; f"
+
 
     pf = push --force-with-lease
 
