@@ -45,7 +45,7 @@
     amfn = "!git ls-files -mo --exclude-standard | fzf -m --preview='git diff --color {}' | xargs git add"
 
     # Open Modified Files: Display commited files since diverting from main branch, select some and open them in vscode 
-    omf = "!git diff --name-only @ $(git get-reference-commit) | fzf -m | xargs code"
+    omf = "!git diff --name-only @ $(git get-reference-commit) | fzf -m --preview='git diff --color --merge-base $(git get-main-branch)' | xargs code"
 
     co = commit
     ame = commit --amend
