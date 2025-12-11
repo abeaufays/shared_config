@@ -32,7 +32,6 @@
     get-reference-commit = "!sh -c 'if [ $(git branch --show-current) = $(git get-main-branch) ]; then git rev-list --max-count=11 HEAD | tail -1 ; else echo $(git merge-base @ $(git get-main-branch)); fi'"
     # Update the main-branch on origin 
     update-main = "!git fetch origin $(git get-main-branch):$(git get-main-branch)"
-    # List commits with only the name to display in fzf preview
     # Check if input branch is merged, inefficient command in terms of time 
     is-merged = "!f() { commit=${1:-HEAD}; main=$(git get-main-branch); if git merge-base --is-ancestor $commit $main 2>/dev/null; then echo 'Merged'; elif git log $main --format=%H | grep -q $(git rev-parse $commit 2>/dev/null); then echo 'Merged (rebased)'; else echo 'Not merged'; fi; }; f"
 
