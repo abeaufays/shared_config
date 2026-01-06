@@ -1,3 +1,5 @@
+⚠️ I no longer use this repo, I've switched to [this dotfiles repo](https://github.com/abeaufays/dotfiles)
+
 For alias list see [.gitconfig](./.gitconfig)  
 For an explanation on how I use these alias see [docs/git-workflow.md](docs/git-workflow.md)
 
